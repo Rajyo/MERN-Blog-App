@@ -90,7 +90,7 @@ const EditBlog = () => {
         click && formData.append("cover", selectedFile);
 
         axios
-            .put(`http://127.0.0.1:5000/blog/updateBlog/${location.state.item._id}/`, formData, {
+            .put(`${process.env.REACT_APP_BASE_URL}blog/updateBlog/${location.state.item._id}/`, formData, {
                 headers: {
                     Authorization: localStorage.getItem("access_token")
                         ? "Bearer " + localStorage.getItem("access_token")
