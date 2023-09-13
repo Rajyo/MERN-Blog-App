@@ -40,7 +40,7 @@ export const Card = () => {
               key={item.id}
               style={{
                 width: "25rem",
-                height: "29.5rem",
+                height: "30.5rem",
                 marginBottom: "3rem",
                 marginTop: "1rem",
                 cursor: "default", border: "2px solid #acb7c4"
@@ -68,13 +68,13 @@ export const Card = () => {
                   <h4 style={{ marginTop: "-0.15rem" }}>{item.category.category}</h4>
                   </Link>
                 </div>
-                <h3 style={{ marginTop: "-0.5rem" }}>{item.title}</h3>
-                <p style={{ fontSize: "0.9rem", marginTop: "0.4rem", color:"#302a2a" }}>{item.desc.slice(0, 90)}...</p>
+                <h3 style={{ marginTop: "-0.65rem" }}>{item.title}</h3>
+                <p style={{ fontSize: "0.8rem", marginTop: "0.3rem", color:"#302a2a" }}>{item.desc.slice(0, 100)}...</p>
                 <div className="date" style={{ display: "flex" }}>
-                  <AiOutlineCalendar className="icon" style={{ marginLeft: "0.25rem" }} />{" "}
-                  <p htmlFor="" style={{ fontSize: "0.9rem", color: "black"  }}>{item.createdAt.substring(0, 10)}</p>
-                  <AiOutlineClockCircle className="icon" style={{ marginLeft: "8rem" }} />{" "}
-                  <p htmlFor="" style={{ fontSize: "0.9rem", color: "black"  }}>{item.createdAt.substring(11, 19)}</p>
+                <AiOutlineCalendar className="icon" style={{ marginLeft: "0.25rem" }} />{" "}
+                <p htmlFor="" style={{ fontSize: "0.8rem", color: "black" }}>{item.createdAt.substring(0, 10)}</p>
+                <AiOutlineClockCircle className="icon" style={{ marginLeft: "10rem" }} />{" "}
+                <p htmlFor="" style={{ fontSize: "0.8rem", color: "black" }}>{item.createdAt.substring(11, 19)}</p>
                 </div>
               </div>
             </div>

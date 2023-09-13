@@ -36,7 +36,7 @@ export const CardHome = () => {
             <div
               className="box boxItems"
               key={item.id}
-              style={{ width: "21rem", height: "32rem", cursor: "default", border: "2px solid #acb7c4" }}
+              style={{ width: "21rem", height: "33rem", cursor: "default", border: "2px solid #acb7c4" }}
             >
 
               <div style={{ display: "flex", backgroundColor: "#acb7c4", margin: "-1.25rem", borderTopLeftRadius: "0.5rem", borderTopRightRadius: "0.5rem", padding: "0.25rem", alignItems:"center" }}>
@@ -65,14 +65,14 @@ export const CardHome = () => {
                     <h4 style={{ marginTop: "-0.15rem", marginLeft: "-0.25rem" }}>{item.category?.category}</h4>
                   </Link>
                 </div>
-                <h3 style={{ marginTop: "-0.35rem" }}>{item.title}</h3>
-                <p className="footer_card" style={{ fontSize: "0.9rem", marginTop: "0.25rem", color:"#302a2a" }}>{item.desc.slice(0, 70)}...</p>
+                <h3 style={{ marginTop: "-0.65rem" }}>{item.title}</h3>
+                <p className="footer_card" style={{ fontSize: "0.8rem", marginTop: "0.25rem", color:"#302a2a" }}>{item.desc.slice(0, 80)}...</p>
               </div>
               <div className="date" style={{ display: "flex"}}>
                 <AiOutlineCalendar className="icon" style={{ marginLeft: "0.25rem" }} />{" "}
-                <p htmlFor="" style={{ fontSize: "0.9rem", color: "black" }}>{item.createdAt.substring(0, 10)}</p>
-                <AiOutlineClockCircle className="icon" style={{ marginLeft: "4rem" }} />{" "}
-                <p htmlFor="" style={{ fontSize: "0.9rem", color: "black" }}>{item.createdAt.substring(11, 19)}</p>
+                <p htmlFor="" style={{ fontSize: "0.8rem", color: "black" }}>{item.createdAt.substring(0, 10)}</p>
+                <AiOutlineClockCircle className="icon" style={{ marginLeft: "6.5rem" }} />{" "}
+                <p htmlFor="" style={{ fontSize: "0.8rem", color: "black" }}>{item.createdAt.substring(11, 19)}</p>
               </div>
             </div>
           ))}

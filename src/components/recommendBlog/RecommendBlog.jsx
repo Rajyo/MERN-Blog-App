@@ -45,7 +45,7 @@ const RecommendBlog = ({ cat }) => {
                   key={item.id}
                   style={{
                     width: "20rem",
-                    height: "23rem",
+                    height: "25rem",
                     marginBottom: "1rem",
                     marginTop: "1rem",
                     backgroundColor: "#859c5f7a",
@@ -69,13 +69,13 @@ const RecommendBlog = ({ cat }) => {
                   <div className="details">
                     <h4 style={{ marginTop: "-0.25rem" }}>{item.title}</h4>
 
-                    <p style={{ fontSize: "0.9rem", marginTop: "0.1rem" , color:"#302a2a" }}>{item.desc.slice(0, 30)}...</p>
+                    <p style={{ fontSize: "0.75rem", marginTop: "0.1rem" , color:"#302a2a" }}>{item.desc.slice(0, 80)}...</p>
 
                     <div className="date" style={{marginBottom:"-0.25rem"}}>
                       <AiOutlineCalendar size="1rem" className="icon" />
-                      <p htmlFor="" style={{ fontSize: "0.8rem" , color: "black" }}>{item.createdAt.substring(0, 10)}</p>
-                      <AiOutlineClockCircle size="1rem" className="icon" style={{ marginLeft: "4rem" }} />
-                      <p htmlFor="" style={{ fontSize: "0.8rem" , color: "black" }}>{item.createdAt.substring(11, 19)}</p>
+                      <p htmlFor="" style={{ fontSize: "0.75rem" , color: "black" }}>{item.createdAt.substring(0, 10)}</p>
+                      <AiOutlineClockCircle size="1rem" className="icon" style={{ marginLeft: "7.5rem" }} />
+                      <p htmlFor="" style={{ fontSize: "0.75rem" , color: "black" }}>{item.createdAt.substring(11, 19)}</p>
                     </div>
                   </div>
                 </div>

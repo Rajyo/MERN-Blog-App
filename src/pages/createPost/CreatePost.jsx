@@ -3,8 +3,10 @@ import "./createPost.css";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import axiosInstance from "../../axios";
+import load from "../../assets/images/loading-7528.gif"
 
 const CreatePost = () => {
+  const [loading, setLoading] = useState(false)
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [category, setCategory] = useState("");
@@ -45,8 +47,14 @@ const CreatePost = () => {
 
 
   const uploadImg = async (event) => {
-    const files = event.target.files;
+    let files = event.target.files;
     //console.log(files.length);
+    const fileSize = files[0]?.size / 1024
+    if (fileSize > 2000) {
+      setSelectedFile(null)
+      alert("File too Big, please select a file less than 2mb")
+      return
+    }
 
     if (files.length === 1) {
       const base64 = await convertBase64(files[0]);
@@ -57,13 +65,19 @@ const CreatePost = () => {
 
   const sendPost = (e) => {
     e.preventDefault();
+
+    if (selectedFile == null) {
+      alert("File too Big, please select a file less than 2mb")
+      return
+    }
+    setLoading(true)
     const formData = new FormData();
     formData.append("cover", selectedFile);
     formData.append("title", title);
     formData.append("desc", desc);
-    if(selectedCategory == "Select Category"){
+    if (selectedCategory == "Select Category") {
       alert("Please select a Category")
-    }else{
+    } else {
       formData.append("category", selectedCategory);
     }
 
@@ -79,90 +93,96 @@ const CreatePost = () => {
         }
       })
       .then((res) => {
+        setLoading(false)
         //console.log("File Upload success", res);
         navigate("/");
       })
       .catch((err) => console.log("File Upload Error", err));
   };
 
+
   return (
     <>
-      <h1
-        style={{
-          textAlign: "center",
-          backgroundColor: "rgba(169, 112, 23, 0.82)",
-          color: "white",
-          padding: "10px",
-        }}
-      >
-        Create Blog
-      </h1>
-      <form
-        onSubmit={sendPost}
-        style={{ marginTop: "2rem", marginBottom: "2rem", backgroundColor: "#d1b0ea24", width: "40rem" }}
-      >
-        <label>
-          Enter Title:
-          <input
-            type="text"
-            name="title"
-            value={title}
-            placeholder="Enter Blog Title"
-            required
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </label>
-        <label style={{ marginBottom: "1.3rem" }}>
-          Enter Category:
-          <select
-            id="cars"
-            name="category"
-            value={selectedCategory}
-            required
-            onChange={(e) => { setSelectedCategory(e.target.value) }}
+      {
+        loading ? <img src={load} alt="" style={{width:"50rem", height:"50rem"}}/> : <>
+          <h1
             style={{
-              width: "100%",
-              padding: "0.4rem 1rem",
-              backgroundColor: "#d1b0ea24",
-              fontSize: "1rem",
-              marginBottom: "0.5rem",
+              textAlign: "center",
+              backgroundColor: "rgba(169, 112, 23, 0.82)",
+              color: "white",
+              padding: "10px",
             }}
           >
-            <option>Select Category</option>
-            {
-              Array.from(category).map((item) => (
-                <option value={item.category}>{item.category}</option>
-              ))
-            }
-          </select>
-        </label>
-        <label>
-          Enter Description:
-          <textarea
-            name="desc"
-            value={desc}
-            required
-            placeholder="Enter Description"
-            onChange={(e) => setDesc(e.target.value)}
-          />
-        </label>
-        <label>
-          Enter Image:
-          <input
-            type="file"
-            required
-            name="cover"
-            className="cover"
-            onChange={uploadImg}
-          />
-          <button
-            onClick={(e) => fileInput.current && fileInput.current.click()}
-            className="btn btn-primary"
-          />
-        </label>
+            Create Blog
+          </h1>
+          <form
+            onSubmit={sendPost}
+            style={{ marginTop: "2rem", marginBottom: "2rem", backgroundColor: "#d1b0ea24", width: "40rem" }}
+          >
+            <label>
+              Enter Title:
+              <input
+                type="text"
+                name="title"
+                value={title}
+                placeholder="Enter Blog Title"
+                required
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </label>
+            <label style={{ marginBottom: "1.3rem" }}>
+              Enter Category:
+              <select
+                id="cars"
+                name="category"
+                value={selectedCategory}
+                required
+                onChange={(e) => { setSelectedCategory(e.target.value) }}
+                style={{
+                  width: "100%",
+                  padding: "0.4rem 1rem",
+                  backgroundColor: "#d1b0ea24",
+                  fontSize: "1rem",
+                  marginBottom: "0.5rem",
+                }}
+              >
+                <option>Select Category</option>
+                {
+                  Array.from(category).map((item) => (
+                    <option value={item.category}>{item.category}</option>
+                  ))
+                }
+              </select>
+            </label>
+            <label>
+              Enter Description:
+              <textarea
+                name="desc"
+                value={desc}
+                required
+                placeholder="Enter Description"
+                onChange={(e) => setDesc(e.target.value)}
+              />
+            </label>
+            <label>
+              Enter Image:
+              <input
+                type="file"
+                required
+                name="cover"
+                className="cover"
+                onChange={uploadImg}
+              />
+              <button
+                onClick={(e) => fileInput.current && fileInput.current.click()}
+                className="btn btn-primary"
+              />
+            </label>
 
-        <input type="submit" className="submit_form" style={{ marginBottom: "-1rem" }} />
-      </form>
+            <input type="submit" className="submit_form" style={{ marginBottom: "-1rem" }} />
+          </form>
+        </>
+      }
     </>
   );
 };

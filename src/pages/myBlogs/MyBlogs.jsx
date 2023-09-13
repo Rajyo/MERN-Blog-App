@@ -59,7 +59,7 @@ const MyBlogs = () => {
               key={item.id}
               style={{
                 width: "25rem",
-                height: "30rem",
+                height: "32rem",
                 marginBottom: "3rem",
                 marginTop: "1rem",
                 backgroundColor: "#859c5f7a", cursor: "default", border: "2px solid #acb7c4", transition: "0s"
@@ -75,7 +75,7 @@ const MyBlogs = () => {
                   <Link to={`/editBlog/${item._id}`} state={{ item: item }}>
                     <button style={{ margin: "0rem 0.5rem", border: "1px solid black", padding: "0.1rem 0.25rem", backgroundColor: "blue", color: "white", borderRadius: "0.5rem", display: "flex", justifyContent: "center" }}><h4 style={{ margin: "0.2rem 0.55rem" }} >Edit</h4><AiOutlineForm size="1.25rem" /></button>
                   </Link>
-                  <button style={{ margin: "0rem 0.5rem", border: "1px solid black", padding: "0.1rem 0.25rem", backgroundColor: "red", color: "white", borderRadius: "0.5rem", display: "flex", justifyContent: "center" }}><h4 style={{ margin: "0.2rem 0.25rem" }} onClick={() => deleteBlog(item)}>Delete  </h4><AiOutlineDelete size="1.25rem" /></button>
+                  <button style={{ margin: "0rem 0.5rem", border: "1px solid black", padding: "0.2rem 0.25rem", backgroundColor: "red", color: "white", borderRadius: "0.5rem", display: "flex", justifyContent: "center", height:"1.8rem" }}><h4 style={{ margin: "0.2rem 0.25rem" }} onClick={() => {deleteBlog(item)}}>Delete  </h4><AiOutlineDelete size="1.25rem" /></button>
                 </div>
               </div>
 
@@ -103,12 +103,12 @@ const MyBlogs = () => {
                   </Link>
                 </div>
                 <h3 style={{ marginTop: "-0.75rem" }}>{item.title}</h3>
-                <p style={{ fontSize: "0.9rem", marginTop: "0rem", color:"#302a2a" }}>{item.desc.slice(0, 90)}...</p>
+                <p style={{ fontSize: "0.8rem", marginTop: "0.25rem", color:"#302a2a" }}>{item.desc.slice(0, 100)}...</p>
                 <div className="date" style={{ display: "flex" }}>
                   <AiOutlineCalendar className="icon" style={{ marginLeft: "0.25rem" }} />{" "}
-                  <p htmlFor="" style={{ fontSize: "0.9rem", color: "black" }}>{item.createdAt.substring(0, 10)}</p>
-                  <AiOutlineClockCircle className="icon" style={{ marginLeft: "8rem" }} />{" "}
-                  <p htmlFor="" style={{ fontSize: "0.9rem", color: "black" }}>{item.createdAt.substring(11, 19)}</p>
+                  <p htmlFor="" style={{ fontSize: "0.8rem", color: "black" }}>{item.createdAt.substring(0, 10)}</p>
+                  <AiOutlineClockCircle className="icon" style={{ marginLeft: "10.5rem" }} />{" "}
+                  <p htmlFor="" style={{ fontSize: "0.8rem", color: "black" }}>{item.createdAt.substring(11, 19)}</p>
                 </div>
               </div>
             </div>

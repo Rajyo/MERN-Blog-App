@@ -51,18 +51,20 @@ export const DetailsPages = () => {
                 <div
                   className="left"
                   style={{
-                  flexBasis: "50%",
+                  width: "50%",
+                  margin:"auto"
                   // backgroundColor: "goldenrod",
                   }}
                 >
-                <img src={blog.cover} alt="" style={{ maxHeight:"34rem",width:"auto" , padding:"2rem 0rem" }} />
+                <img src={blog.cover} alt="" style={{ maxWidth:"40rem" , padding:"2rem 0rem" }} />
               </div>
 
               <div
                 className="right"
                 style={{
-                  flexBasis: "50%",
+                  width: "50%",
                   padding: "10px",
+                  marginLeft:"1rem"
                   // backgroundColor: "gold",
                 }}
               >
