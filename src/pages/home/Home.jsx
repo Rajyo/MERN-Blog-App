@@ -35,7 +35,7 @@ export const Home = () => {
                 it spin down after 15 minutes of inactivity.</h3>
               <h3>Since there are no active users and I am using a Free Service, the first request might take longer to
                 respond.</h3>
-              <h2 style={{ color: "blue", marginTop: 10 }}>So please refresh the page and try again.</h2>
+              <h2 style={{ color: "blue", marginTop: 10 }}>So please refresh the page and wait for 20-30 seconds.</h2>
 
             </section>
           </div>
