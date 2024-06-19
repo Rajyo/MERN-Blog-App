@@ -5,7 +5,6 @@ import {
   AiOutlineTags,
   AiOutlineClockCircle,
   AiOutlineCalendar,
-  AiOutlineUser
 } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
@@ -36,7 +35,7 @@ export const Card = () => {
         >
           {blogs.map((item) => (
             <div
-              className="box boxItems"
+              className="box boxItems relative"
               key={item.id}
               style={{
                 width: "25rem",
@@ -46,8 +45,8 @@ export const Card = () => {
                 cursor: "default", border: "2px solid #acb7c4"
               }}
             >
-              <div style={{ display: "flex", backgroundColor: "#acb7c4", margin: "-1.25rem", borderTopLeftRadius: "0.5rem", borderTopRightRadius: "0.5rem", padding: "0.25rem", alignItems:"center"}}>
-              <img src={item.userId.profile.avatar} alt="" style={{ margin: "0rem 1rem", height:"2rem", width:"2rem", borderRadius:"1rem" }}/>
+              <div style={{ display: "flex", backgroundColor: "#acb7c4", margin: "-1.25rem", borderTopLeftRadius: "0.5rem", borderTopRightRadius: "0.5rem", padding: "0.25rem", alignItems: "center" }}>
+                <img src={item.userId.profile.avatar} alt="" style={{ margin: "0rem 1rem", height: "2rem", width: "2rem", borderRadius: "1rem" }} />
                 <h4>@{item.userId.username}</h4>
               </div>
 
@@ -56,7 +55,7 @@ export const Card = () => {
                   <img src={item.cover} alt="" />
                 </div>
               </Link>
-              <div className="details" style={{marginTop:"-0.25rem"}}>
+              <div className="details" style={{ marginTop: "-0.25rem" }}>
                 <div className="tag">
                   <AiOutlineTags
                     style={{
@@ -65,17 +64,23 @@ export const Card = () => {
                     }}
                   />
                   <Link to={`/category/${item.category._id}`}>
-                  <h4 style={{ marginTop: "-0.15rem" }}>{item.category.category}</h4>
+                    <h4 style={{ marginTop: "-0.15rem" }}>{item.category.category}</h4>
                   </Link>
                 </div>
                 <h3 style={{ marginTop: "-0.65rem" }}>{item.title}</h3>
-                <p style={{ fontSize: "0.8rem", marginTop: "0.3rem", color:"#302a2a" }}>{item.desc.slice(0, 100)}...</p>
-                <div className="date" style={{ display: "flex" }}>
-                <AiOutlineCalendar className="icon" style={{ marginLeft: "0.25rem" }} />{" "}
-                <p htmlFor="" style={{ fontSize: "0.8rem", color: "black" }}>{item.createdAt.substring(0, 10)}</p>
-                <AiOutlineClockCircle className="icon" style={{ marginLeft: "10rem" }} />{" "}
-                <p htmlFor="" style={{ fontSize: "0.8rem", color: "black" }}>{item.createdAt.substring(11, 19)}</p>
+                <p style={{ fontSize: "0.8rem", marginTop: "0.3rem", color: "#302a2a" }}>{item.desc.slice(0, 100)}...</p>
+
+                <div className="flex justify-between sm:absolute sm:bottom-0 sm:left-[1rem] sm:w-[90%]" >
+                <div className="flex">
+                  <AiOutlineCalendar className="icon" />{" "}
+                  <p htmlFor="" style={{ fontSize: "0.8rem", color: "black" }}>{item.createdAt.substring(0, 10)}</p>
                 </div>
+                <div className="flex">
+                  <AiOutlineClockCircle className="icon" />{" "}
+                  <p htmlFor="" style={{ fontSize: "0.8rem", color: "black" }}>{item.createdAt.substring(11, 19)}</p>
+                </div>
+              </div>
+
               </div>
             </div>
           ))}

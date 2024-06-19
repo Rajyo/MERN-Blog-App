@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import {
   AiOutlineClockCircle,
   AiOutlineCalendar,
-  AiOutlineUser
+  AiOutlineTags,
 } from "react-icons/ai";
 
 
-const RecommendBlog = ({ cat }) => {
+const RecommendBlog = ({ cat, cate }) => {
   const [category, setCategory] = useState(null);
 
   useEffect(() => {
@@ -29,55 +29,56 @@ const RecommendBlog = ({ cat }) => {
     <>
       {category ? (
         <>
-          <section className="blog">
-            <h2 style={{ textAlign: "center" }}>Blog Recommendation</h2>
-            <div
-              className="card_container"
-              style={{
-                margin: "0px",
-                padding: "0px",
-                marginTop: "1rem"
-              }}
-            >
-              {category.blog.map((item) => (
+          <section className="blog py-5">
+            <h2 style={{ textAlign: "center", fontSize:"1.5rem" }}>Blog Recommendation</h2>
+            <div className="sm:px-1 md:px-0 max-[640px]:w-[90%] sm:w-[100%] md:w-[95%] mx-auto flex py-4 flex-wrap gap-y-4 justify-around">
+              {category?.blog?.slice(0,4).map((item) => (
                 <div
-                  className="box boxItems"
+                  className="box boxItems w-full h-auto sm:w-[19rem] md:w-[21rem] sm:h-[29.5rem]"
                   key={item.id}
-                  style={{
-                    width: "20rem",
-                    height: "25rem",
-                    marginBottom: "1rem",
-                    marginTop: "1rem",
-                    backgroundColor: "#859c5f7a",
-                    cursor: "default", border: "2px solid #acb7c4"
-                  }}
-                >
-                  <div style={{ display: "flex", alignItems:"center", backgroundColor: "#acb7c4", margin: "-1.25rem", borderTopLeftRadius: "0.5rem", borderTopRightRadius: "0.5rem", padding: "0.25rem", marginBottom:"1rem" }}>
-                  <img src={item.userId.profile.avatar} alt="" style={{ margin: "0rem 0.5rem 0rem 1rem", height:"1.75rem", width:"1.75rem", borderRadius:"1rem" }}/>
-                <h4>@{item.userId.username}</h4>
+                  style={{ cursor: "default", border: "2px solid #acb7c4", position: "relative" }} >
+
+                  <div style={{ display: "flex", backgroundColor: "#acb7c4", margin: "-1.25rem", borderTopLeftRadius: "0.5rem", borderTopRightRadius: "0.5rem", padding: "0.25rem", alignItems: "center" }}>
+                    <img src={item.userId.profile.avatar} alt="" style={{ margin: "0rem 1rem", height: "2rem", width: "2rem", borderRadius: "1rem" }} />
+                    <h4>@{item.userId.username}</h4>
                   </div>
 
-                  <Link to={`/details/${item._id}`} className="link">
-                    <div className="img">
+                  <div className="image_cover">
+                    <Link to={`/details/${item._id}`} className="link">
                       <img
                         src={item.cover}
                         alt=""
-                        style={{ marginTop: "-0.5rem", marginBottom: "0.5rem", height: "14rem" }}
+                        style={{
+                          width: "100%",
+                          height: "15rem",
+                          marginBottom: "1rem",
+                          objectFit: "contain",
+                        }}
                       />
-                    </div>
-                  </Link>
+                    </Link>
+                  </div>
                   <div className="details">
-                    <h4 style={{ marginTop: "-0.25rem" }}>{item.title}</h4>
+                  <div className="tag">
+                  <AiOutlineTags className="icon" />
+                  <Link to={`/category/${item?.category?._id}`}>
+                    <h4 style={{ marginTop: "-0.15rem", marginLeft: "-0.25rem" }}>{cate}</h4>
+                  </Link>
+                </div>
+                    <h3 style={{ marginTop: "-0.65rem" }}>{item.title}</h3>
+                    <p className="footer_card" style={{ fontSize: "0.8rem", marginTop: "0.25rem", color: "#302a2a" }}>{item.desc.slice(0, 75)}...</p>
+                  </div>
 
-                    <p style={{ fontSize: "0.75rem", marginTop: "0.1rem" , color:"#302a2a" }}>{item.desc.slice(0, 80)}...</p>
-
-                    <div className="date" style={{marginBottom:"-0.25rem"}}>
-                      <AiOutlineCalendar size="1rem" className="icon" />
-                      <p htmlFor="" style={{ fontSize: "0.75rem" , color: "black" }}>{item.createdAt.substring(0, 10)}</p>
-                      <AiOutlineClockCircle size="1rem" className="icon" style={{ marginLeft: "7.5rem" }} />
-                      <p htmlFor="" style={{ fontSize: "0.75rem" , color: "black" }}>{item.createdAt.substring(11, 19)}</p>
+                  <div className="flex justify-between sm:absolute sm:bottom-0 sm:left-[1rem] sm:w-[90%]" >
+                    <div className="flex">
+                      <AiOutlineCalendar className="icon" />{" "}
+                      <p htmlFor="" style={{ fontSize: "0.8rem", color: "black" }}>{item.createdAt.substring(0, 10)}</p>
+                    </div>
+                    <div className="flex">
+                      <AiOutlineClockCircle className="icon" />{" "}
+                      <p htmlFor="" style={{ fontSize: "0.8rem", color: "black" }}>{item.createdAt.substring(11, 19)}</p>
                     </div>
                   </div>
+
                 </div>
               ))}
             </div>

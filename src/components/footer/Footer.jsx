@@ -6,14 +6,14 @@ import { RiInstagramFill } from "react-icons/ri"
 export const Footer = () => {
   return (  
     <>
-      <footer className='boxItems'>
-        <div className='container flex' style={{margin:"0px 5rem"}}>
-          <p style={{color:"black"}}>© 2023 Unicorn Blog - All right reserved - Design & Developed by the Developer, Inc</p>
-          <div className='social' style={{color:"black"}}>
-            <BsFacebook className='icon' />
-            <RiInstagramFill className='icon' />
-            <AiFillTwitterCircle className='icon' />
-            <AiFillLinkedin className='icon' />
+      <footer className="py-5 bg-black/70 text-white">
+        <div className='flex flex-col sm:flex-row gap-4 sm:justify-around'>
+          <p className="text-white sm:text-lg text-center">© 2023 Unicorn Blog - All right reserved</p>
+          <div className='flex gap-5'>
+            <BsFacebook className='text-2xl' />
+            <RiInstagramFill className='text-2xl' />
+            <AiFillTwitterCircle className='text-2xl' />
+            <AiFillLinkedin className='text-2xl' />
           </div>
         </div>
       </footer>

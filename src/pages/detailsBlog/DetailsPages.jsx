@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axiosInstance from "../../axios";
-import "./details.css";
-import "../../components/header/header.css";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import RecommendBlog from "../../components/recommendBlog/RecommendBlog";
@@ -16,7 +14,7 @@ export const DetailsPages = () => {
   const [blog, setBlog] = useState(null);
 
   useEffect(() => {
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
     getDetails();
   }, [id]);
 
@@ -40,82 +38,72 @@ export const DetailsPages = () => {
           color: "white",
           padding: "10px",
           marginBottom: "1rem",
+          fontSize: "2rem"
         }}
       >
         Details Page
       </h1>
       {blog ? (
         <>
-          <section className="singlePage">
-            <div className="container">
-                <div
-                  className="left"
-                  style={{
-                  width: "50%",
-                  margin:"auto"
-                  // backgroundColor: "goldenrod",
-                  }}
-                >
-                <img src={blog.cover} alt="" style={{ maxWidth:"40rem" , padding:"2rem 0rem" }} />
+          <section className="max-w-[95%] min-h-[50vh] mx-auto flex flex-col gap-y-10 lg:flex-row py-5 bg-slate-50">
+
+            <div className="lg:basis-1/2 shadow-xl shadow-slate-400">
+              <img src={blog.cover} alt="" className="w-full max-w-[80vw] lg:max-w-[50vw] h-full object-cover" />
+            </div>
+
+            <div className="lg:basis-1/2 px-2 flex flex-col gap-5 lg:px-6 w-full">
+              <div style={{ display: "flex", gap: "1rem", alignSelf:"flex-start" }}>
+                <h2 className="text-lg">Title:</h2>
+                <p className="font-bold text-lg">{blog.title}</p>
               </div>
 
-              <div
-                className="right"
-                style={{
-                  width: "50%",
-                  padding: "10px",
-                  marginLeft:"1rem"
-                  // backgroundColor: "gold",
-                }}
-              >
-                <div style={{display:"flex"}}>
-                <h2 style={{color:"black", marginBottom:"-0.5rem", marginTop:"0.5rem"}}>Title:</h2>
-                <p className="title" style={{marginLeft:"1rem"}}>{blog.title}</p>
-                </div>
-
-                <h3 style={{color:"black", marginTop:"1.5rem"}}>Author:</h3>
-                  <p style={{color:"black"}}>
+              <div style={{ display: "flex", gap: "1rem", alignSelf:"flex-start" }}>
+                <h3 className="text-lg">Author:</h3>
+                <p className="font-bold text-lg">
                   {blog.userId.email}
-                  </p>
+                </p>
+              </div>
 
-                <h3 style={{color:"black", marginTop:"1.5rem"}}>Category:</h3>
+              <div style={{ display: "flex", gap: "1rem", alignSelf:"flex-start" }}>
+                <h3 className="text-lg">Category:</h3>
                 <Link
                   to={`/category/${blog.category._id}`}
-                  style={{ fontSize: "large", marginBottom: "1rem" }}
+                  style={{ fontSize: "large",}}
                 >
-                  <p style={{color:"black"}}>
-                  {blog.category.category}
+                  <p className="font-bold text-lg">
+                    {blog.category.category}
                   </p>
                 </Link>
+              </div>
 
-                <p className="start">
-                  <h3
-                    style={{
-                      fontSize: "large",
-                      textAlign: "start",
-                      color: "black",
-                      marginTop:"0.75rem"
-                    }}
-                  >
-                    Description:
-                  </h3>
-                  <p className="desc" style={{color:"black"}}>{blog.desc.slice(0, 650)}</p>
-                </p>
-                <div className="date time" style={{display:"flex", margin:"1rem 0rem 0.5rem 0rem", color:"black"}}>
-                  <AiOutlineCalendar size="1.4rem" className="icon" />
-                  <label htmlFor="">{blog.createdAt.substring(0,10)}</label>
-                  <AiOutlineClockCircle size="1.4rem" className="icon" style={{marginLeft:"4rem"}}/>
-                  <label htmlFor="">{blog.createdAt.substring(11,19)}</label>
+              <p className="start" style={{ alignSelf:"flex-start"}}>
+                <h3
+                  style={{
+                    fontSize: "large",
+                    textAlign: "start",
+                    color: "black",
+                  }}
+                >
+                  Description:
+                </h3>
+                <p className="desc text-sm">{blog.desc.slice(0, 650)}</p>
+              </p>
+              <div className="w-full justify-between lg:pr-6 mt-4" style={{ display: "flex", color: "black", alignSelf: "flex-start" }}>
+                <div className="flex gap-2">
+                <AiOutlineCalendar className="text-lg" />
+                <p className="text-sm text-black" htmlFor="">{blog.createdAt.substring(0, 10)}</p >
+                </div>
+                <div className="flex gap-2">
+                <AiOutlineClockCircle className="text-lg" />
+                <p className="text-sm text-black" htmlFor="">{blog.createdAt.substring(11, 19)}</p >
                 </div>
               </div>
             </div>
+
           </section>
-          <RecommendBlog cat={blog.category._id} />
+          <RecommendBlog cat={blog.category._id} cate={blog.category.category} />
         </>
       ) : null}
-
-      {/* <RecommendBlog category={blog.category.category} /> */}
-      {/* <RecommendBlog /> */}
     </>
   );
 };

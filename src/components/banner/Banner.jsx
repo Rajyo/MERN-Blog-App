@@ -4,8 +4,8 @@ import logo from "../../assets/images/top-view-arrangement-natural-material-stat
 
 const Banner = () => {
   return (
-    <div className="container_banner">
-      <div className="center_banner" style={{marginTop:"-3rem"}}>BLOG</div>
+    <div>
+      <div className="center_banner">BLOG</div>
       <img src={logo} alt="cover" className="banner" />
     </div>
   );

@@ -10,9 +10,10 @@ const Blog = () => {
           backgroundColor: "rgba(169, 112, 23, 0.82)",
           color: "white",
           padding: "10px",
+          fontSize: "2rem"
         }}
       >
-        Blog
+        Blogs
       </h1>
       <Card />
     </>
