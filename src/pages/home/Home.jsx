@@ -12,9 +12,7 @@ export const Home = () => {
   const getNotice = async () => {
     await new Promise((resolve) => setTimeout(resolve, 10000))
     setNotice(true)
-    await new Promise((resolve) => setTimeout(resolve, 5000))
-    window.location.reload('/')
-}
+  }
 
   useEffect(() => {
     getCategory();
@@ -35,7 +33,8 @@ export const Home = () => {
   return (
     <>
       <div style={{ position: "relative" }}>
-        {(category?.length === 0 && notice) &&
+        {
+          (category?.length === 0 && notice) &&
 
           <div style={{ position: "absolute", zIndex: 10, width: "100%", height: "85vh", display: "flex", alignItems: "center" }}>
             <section id="categoryWidth" style={{ backgroundColor: "black", color: "white", display: "flex", flexDirection: "column", gap: 20, borderRadius: 15, margin: "auto", justifyContent: "center", alignItems: "center", placeItems: "center" }} >
@@ -48,10 +47,15 @@ export const Home = () => {
               <h2 style={{ color: "blue", marginTop: 10 }}>So please refresh the page and wait for 20-30 seconds.</h2>
 
             </section>
+            {
+              setTimeout(() => {
+                window.location.href = "/"
+              }, 5000)
+            }
           </div>
         }
       </div>
-      
+
       <>
         <Banner />
         <Category category={category} />
