@@ -7,6 +7,7 @@ import {
   AiOutlineCalendar,
 } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import CardSkeleton from "../skeleton/CardSkeleton";
 
 export const Card = () => {
   const [blogs, setBlogs] = useState([]);
@@ -17,6 +18,7 @@ export const Card = () => {
 
   const getPosts = async () => {
     try {
+      // await new Promise(resolve => setTimeout(resolve, 5000))
       await axiosInstance.get(`blog/getAll/`).then((res) => {
         setBlogs(res.data);
         //console.log(res.data);
@@ -33,7 +35,10 @@ export const Card = () => {
           className="card_container"
           style={{ display: "flex", flexWrap: "wrap" }}
         >
-          {blogs.map((item) => (
+          {
+            (blogs?.length === 0 || blogs == null) && <CardSkeleton />
+          }
+          {blogs?.map((item) => (
             <div
               className="box boxItems relative"
               key={item.id}

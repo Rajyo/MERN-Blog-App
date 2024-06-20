@@ -8,6 +8,7 @@ import {
   AiOutlineCalendar,
 } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import BlogSkeleton from "../skeleton/BlogSkeleton";
 
 export const CardHome = () => {
   const [blogs, setBlogs] = useState([]);
@@ -18,6 +19,7 @@ export const CardHome = () => {
 
   const getPosts = async () => {
     try {
+      // await new Promise(resolve => setTimeout(resolve, 3000))
       await axiosInstance.get(`blog/getAll/`).then((res) => {
         setBlogs(res.data);
         //console.log(res.data);
@@ -32,8 +34,13 @@ export const CardHome = () => {
       <section className="blog" style={{ marginTop: "5rem", cursor: "default" }}>
         <h1 className="text-2xl text-center py-5">Latest Blogs</h1>
 
+        {
+          (blogs?.length === 0 || blogs == null) && <BlogSkeleton />
+        }
+
         <div className="sm:px-1 md:px-0 max-[640px]:w-[90%] sm:w-[100%] md:w-[95%] mx-auto flex py-4 flex-wrap gap-y-4 justify-around">
-          {blogs.slice(0, 4).map((item) => (
+
+          {blogs?.slice(0, 4)?.map((item) => (
             <div
               className="box boxItems w-full h-auto sm:w-[19rem] md:w-[21rem] sm:h-[29.5rem]"
               key={item.id}

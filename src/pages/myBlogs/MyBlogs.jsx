@@ -9,6 +9,7 @@ import {
   AiOutlineDelete
 } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import MyBlogsSkeleton from "../../components/skeleton/MyBlogsSkeleton";
 
 const MyBlogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -31,6 +32,7 @@ const MyBlogs = () => {
 
   const getPosts = async () => {
     try {
+      // await new Promise(resolve => setTimeout(resolve, 5000))
       await axiosInstance.get(`blog/getUserBlogs`).then((res) => {
         setBlogs(res.data);
         //console.log(res.data);
@@ -41,7 +43,7 @@ const MyBlogs = () => {
   };
 
   return (
-    <>
+    <section className="min-h-[83.5vh]">
       <div className="container_details">
         <h1 style={{ textAlign: "center", fontSize: "2rem" }}>
           My Blogs
@@ -52,7 +54,10 @@ const MyBlogs = () => {
           className="card_container"
           style={{ display: "flex", flexWrap: "wrap" }}
         >
-          {blogs.map((item) => (
+          {
+            (blogs?.length === 0 || blogs == null ) && <MyBlogsSkeleton />
+          }
+          {blogs?.map((item) => (
             <div
               className="myBlogs box boxItems relative"
               key={item.id}
@@ -102,7 +107,7 @@ const MyBlogs = () => {
                   </Link>
                 </div>
                 <h3 style={{ marginTop: "-0.75rem" }}>{item.title}</h3>
-                <p style={{ fontSize: "0.8rem", marginTop: "0.25rem", color: "#302a2a" }}>{item.desc.slice(0, 100)}...</p>
+                <p style={{ fontSize: "0.8rem", marginTop: "0.25rem", color: "#302a2a" }}>{item.desc.slice(0, 150)}...</p>
                 
                 <div className="w-full max-w-[90%]" style={{ display: "flex", justifyContent:"space-between", position:"absolute", bottom: 0 }}>
                   <div className="flex">
@@ -119,7 +124,7 @@ const MyBlogs = () => {
           ))}
         </div>
       </section>
-    </>
+    </section>
   );
 };
 

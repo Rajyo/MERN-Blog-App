@@ -21,7 +21,6 @@ nav a {
 
 /* User */
 .profile {
-  margin-left: 30px;
   cursor: pointer;
 }
 .profile .image {
@@ -92,11 +91,11 @@ header.active {
   text-decoration:underline ;
 }
 
-@media screen and (max-width: 700px) {
+/* @media screen and (max-width: 700px) {
   header .search {
     display: none;
   }
   nav {
     display: none;
   }
-}
+} */

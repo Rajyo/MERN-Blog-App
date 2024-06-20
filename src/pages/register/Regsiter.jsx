@@ -9,7 +9,7 @@ const Register = () => {
   const submit = async (e) => {
     e.preventDefault();
 
-    if (password.length < 6) {
+    if (password?.length < 6) {
       alert("Password should be more than 6 letters")
       return
     }

@@ -46,7 +46,7 @@ const User = () => {
 
   return (
     <>
-      <div className="profile">
+      <div className="profile mt-2">
         {profile ? (
           <>
             <button
@@ -55,17 +55,11 @@ const User = () => {
                 setProfileOpen(!profileOpen);
               }}
             >
-              <div style={{
-                  width: "3rem",
-                  height: "3rem",
-                  marginTop: "0.3rem",
-                  marginRight: "0.5rem",
-                }}>
               <img
                 src={userProfile?.profile?.avatar}
                 alt="avatar"
+                className="w-10 h-10 object-cover rounded-md"
               />
-              </div>
             </button>
             {profileOpen && (
               <div

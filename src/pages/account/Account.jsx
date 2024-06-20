@@ -45,7 +45,7 @@ const Account = () => {
       return
     }
     setClick(true)
-    if (files.length === 1) {
+    if (files?.length === 1) {
       const base64 = await convertBase64(files[0]);
       setSelectedFile(base64);
       return;

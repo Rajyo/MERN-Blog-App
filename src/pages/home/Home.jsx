@@ -7,12 +7,22 @@ import "./home.css"
 
 export const Home = () => {
   const [category, setCategory] = useState([]);
+  const [notice, setNotice] = useState(false)
+
+  const getNotice = async () => {
+    await new Promise((resolve) => setTimeout(resolve, 10000))
+    setNotice(true)
+    await new Promise((resolve) => setTimeout(resolve, 5000))
+    window.location.reload('/')
+}
 
   useEffect(() => {
     getCategory();
+    getNotice()
   }, []);
 
   const getCategory = async () => {
+
     try {
       await axiosInstance.get(`category`).then((res) => {
         // console.log(res.data);
@@ -25,7 +35,7 @@ export const Home = () => {
   return (
     <>
       <div style={{ position: "relative" }}>
-        {category.length === 0 &&
+        {(category?.length === 0 && notice) &&
 
           <div style={{ position: "absolute", zIndex: 10, width: "100%", height: "85vh", display: "flex", alignItems: "center" }}>
             <section id="categoryWidth" style={{ backgroundColor: "black", color: "white", display: "flex", flexDirection: "column", gap: 20, borderRadius: 15, margin: "auto", justifyContent: "center", alignItems: "center", placeItems: "center" }} >
@@ -41,11 +51,12 @@ export const Home = () => {
           </div>
         }
       </div>
-      <div style={{opacity: category.length === 0 ? "10%" : "100%"}}>
+      
+      <>
         <Banner />
         <Category category={category} />
         <CardHome />
-      </div>
+      </>
     </>
   );
 };
